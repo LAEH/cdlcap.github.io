@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDL Capital</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Preview Image (for social sharing, etc.) -->
+    <meta property="og:image" content="preview.jpg">
+    <meta name="twitter:image" content="preview.jpg">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: flex-end; /* Vertical alignment to the bottom */
+        }
+
+        .image-container {
+            max-width: 670px;
+            width: 100%;
+            margin-bottom: calc(50vh - (var(--image-height) / 2)); /* Adjust for centering */
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            height: auto; /* Let height scale proportionally */
+            --image-height: 0px; /* Custom property to hold image height */
+        }
+
+        /* JavaScript is used to dynamically set the image height */
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        <img id="myImage" src="landing.jpg" alt="Your Image" onload="setImageHeight()">
+    </div>
+
+    <script>
+        function setImageHeight() {
+            let img = document.getElementById("myImage");
+            let imageHeight = img.offsetHeight;  // Get actual image height
+            img.style.setProperty('--image-height', imageHeight + 'px'); //Set CSS Variable
+
+             // Recalculate margin-bottom after image loads (important for dynamic heights)
+            let container = document.querySelector('.image-container');
+            container.style.marginBottom = `calc(62vh - (${imageHeight}px / 2))`;
+        }
+    </script>
+
+</body>
+</html>
